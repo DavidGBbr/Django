@@ -1,15 +1,11 @@
 from django.db import models
 
 # Create your models here.
-class Event:
-  def __init__(self, nome, categoria, local=None, link=None):
-    self.nome = nome
-    self.categoria = categoria
-    self.local = local
-    self.link = link
+class Category(models.Model):
+  name = models.CharField(max_length=255)
 
-aula_python = Event("Aula de Python", "Backend", "Rio de Janeiro")
-aula_js = Event("Aula de JavaScript", "Fullstack", link="https://tamarcado.com/")
-events = [
-  aula_python, aula_js
-]
+class Event(models.Model):
+  name = models.CharField(max_length=255)
+  category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+  local = models.CharField(max_length=255, blank=True)
+  link = models.CharField(max_length=255, blank=True)
