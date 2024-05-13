@@ -1,10 +1,11 @@
+from datetime import date
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.template import loader
 from agenda.models import Event
 # Create your views here.
 def get_events(request):
-    events = Event.objects.all()
+    events = Event.objects.filter(date__gte=date.today())
     return render(
        request=request, 
        context={"events": events}, 

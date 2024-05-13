@@ -12,6 +12,7 @@ class Event(models.Model):
   category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
   local = models.CharField(max_length=255, blank=True)
   link = models.CharField(max_length=255, blank=True)
+  date = models.DateField(null=True)
 
   def __str__(self):
       return f'{self.name} <{self.id}>'

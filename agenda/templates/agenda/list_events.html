@@ -28,7 +28,10 @@
         <td>{{event.name}}</td>
         <td>{{event.category.name}}</td>
         <td>{% firstof event.local event.link %}</td>
-        <td>{{event.date}}</td>
+        <td>
+          {%if event.date%} {{event.date | date:"d/m/Y"}} {%else%} a definir.
+          {%endif%}
+        </td>
         <td><a href="show_event.html">Ver detalhes</a></td>
       </tr>
       {%endfor%}
