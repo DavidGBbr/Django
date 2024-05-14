@@ -3,5 +3,5 @@ from agenda.views import get_events, show_event
 
 urlpatterns = [
       path("", get_events),
-      path("event", show_event)
+      path("events/<int:id>/", show_event)
 ]

@@ -1,6 +1,6 @@
 from datetime import date
 from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from agenda.models import Event
 # Create your views here.
@@ -13,13 +13,10 @@ def get_events(request):
     )
 
 
-def show_event(request):
-  event = {
-    "name":"Teste",
-    "category":"Categoria A",
-    "local":"Rio de Janeiro"
-  }
-  # template = loader.get_template("agenda/show_event.html")
-  # rendered_template = template.render(context={"event": event}, request=request)
-  # return HttpResponse(rendered_template)
-  return render(request=request, context={"event": event}, template_name="agenda/show_event.html")
+def show_event(request, id):
+  event = get_object_or_404(Event,id=id)
+  return render(
+     request=request, 
+     context={"event": event}, 
+     template_name="agenda/show_event.html"
+  )
